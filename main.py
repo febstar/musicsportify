@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
-import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from security import safe_requests
 
 date_input = input("Which Year would you like to travel to? Type the date in this format YYYY-MM-DD: ")
 
@@ -9,7 +9,7 @@ URL = f"https://www.billboard.com/charts/hot-100/{date_input}"
 SPOTIFY_ID = "729651bb0b0e455189acc585b17a3c8f"
 SPOTIFY_SECRET = "3c75a2e165e54d98926fe8b712a472cb"
 
-response = requests.get(url=URL)
+response = safe_requests.get(url=URL)
 info = response.text
 
 soup = BeautifulSoup(info, 'html.parser')
